@@ -79,7 +79,7 @@ let weather = {
             document.body.style.backgroundImage = "url('imgs/few-clouds.jpg')";
         } else if (description === 'scattered clouds' || description === 'broken clouds' ) {
             document.body.style.backgroundImage = "url('imgs/clouds.jpg')";
-        } else if (description === 'shower rain' || description === 'rain' || description === 'light rain') {
+        } else if (description === 'shower rain' || description === 'rain' || description === 'light rain' || description === 'moderate rain') {
             document.body.style.backgroundImage = "url('imgs/rain.jpg')";
         } else if (description === 'thunderstrom') {
             document.body.style.backgroundImage = "url('imgs/thunderstorm.jpg')";
