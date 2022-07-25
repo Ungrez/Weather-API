@@ -5,7 +5,6 @@ const search = () => {
     if(inputValue.value) {
         weather.weatherInfo(inputValue.value);
         inputValue.value = "";
-        document.querySelector('#error-container').style.opacity = "0";
     }
 };
 const searchLocation = (position) => {
@@ -24,9 +23,8 @@ const init = () => {
 }
 
 let weather = {
-    apiKey: "4a0c2a9143ffc504f8e10baa4140410f",
     weatherInfo(city) {
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=4&units=metric&appid=${weather.apiKey}`)
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=4&units=metric&appid=4a0c2a9143ffc504f8e10baa4140410f`)
         .then((response) => { 
             if (response.ok) {
                 return response.json();
@@ -36,11 +34,14 @@ let weather = {
             this.displayWeather(data);
         }).catch(() => {
             document.querySelector('#error-container').style.opacity = "1";
+            setTimeout(() => {
+                document.querySelector('#error-container').style.opacity = "0";
+            }, 2000)
         });
     },
         
     currentLocation(latitude, longitude) {
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=4&units=metric&appid=${weather.apiKey}`)
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=4&units=metric&appid=4a0c2a9143ffc504f8e10baa4140410f`)
         .then(response => response.json())
         .then((data) => {
             this.displayWeather(data);
@@ -77,7 +78,7 @@ let weather = {
             document.body.style.backgroundImage = "url('imgs/clear-sky.jpg')";
         } else if (description === 'few clouds') {
             document.body.style.backgroundImage = "url('imgs/few-clouds.jpg')";
-        } else if (description === 'scattered clouds' || description === 'broken clouds' ) {
+        } else if (description === 'scattered clouds' || description === 'broken clouds' || description === 'overcast clouds') {
             document.body.style.backgroundImage = "url('imgs/clouds.jpg')";
         } else if (description === 'shower rain' || description === 'rain' || description === 'light rain' || description === 'moderate rain') {
             document.body.style.backgroundImage = "url('imgs/rain.jpg')";
