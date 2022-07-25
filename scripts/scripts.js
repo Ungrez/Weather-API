@@ -74,8 +74,12 @@ let weather = {
         }
         if (description === 'clear sky' && date.getHours() > 19 || date.getHours < 5 ) {
             document.body.style.backgroundImage = "url('imgs/night.jpg')";
+            document.querySelector('#long-term-container').style.background = "linear-gradient(0deg, rgba(45,44,44,1) 0%, rgba(0,0,0,1) 100%)";
+            document.querySelector('#long-term-container').style.color = "#fff";
         } else if(description === 'clear sky') {
             document.body.style.backgroundImage = "url('imgs/clear-sky.jpg')";
+            document.querySelector('#long-term-container').style.background = "linear-gradient(0deg, rgba(251,251,251,1) 0%, rgba(79,174,245,1) 100%)";
+            document.querySelector('#long-term-container').style.color = "#000";
         } else if (description === 'few clouds') {
             document.body.style.backgroundImage = "url('imgs/few-clouds.jpg')";
         } else if (description === 'scattered clouds' || description === 'broken clouds' || description === 'overcast clouds') {

@@ -4,12 +4,11 @@
     width: 45%;
     height: 104%;
     transform: translateY(-2%);
-    background: rgb(251,251,251);
-    background: linear-gradient(0deg, rgba(251,251,251,1) 0%, rgba(79,174,245,1) 100%);
+    background: #000;
     border-radius: 1.5em;
     z-index: 1;
     box-shadow: 0px 0px 8px 1px black;
-    transition: .3s;
+    transition: .2s;
     padding: 2em;
 }
 #long-term-container .weather-location{
