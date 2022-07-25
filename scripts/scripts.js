@@ -31,7 +31,7 @@ let weather = {
             if (response.ok) {
                 return response.json();
             }
-            throw new Error ('Something went wrong');
+            throw new Error ();
         }).then((data) => {
             this.displayWeather(data);
         }).catch(() => {
