@@ -1,0 +1,65 @@
+@media (max-width: 440px) {
+    section#container {
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        border-radius: 0;
+    }
+    section#long-term-container {
+        width: 100%;
+        height: 45%;
+        border-radius: 0 0 1.5em 1.5em;
+        padding: 1.5em;
+    }
+    section#long-term-container:hover {
+        transform: none;
+    }
+    section#about-weather-container {
+        width: 100%;
+        border-radius: 0;
+    }
+    section#long-term-container .icon {
+        width: 23vw;
+        height: 23vw;
+    }
+    aside#long-term-weather-container div.day img {
+        height: 15vw;
+        width: 15vw;
+    }
+    section#long-term-container .weather-temperature {
+        font-size: 44px;
+    }
+}
+@media (min-width: 700px) and (max-width: 1023px) {
+    section#container {
+        flex-direction: column;
+        height: 90vh;
+        width: 90vw;
+        margin: 5vh auto;
+    }
+    section#long-term-container {
+        font-size: 24px;
+        width: 100%;
+    }
+    section#about-weather-container {
+        width: 100%;
+        font-size: 24px;
+    }
+    section#long-term-container .icon {
+        width: 20vw;
+        height: 20vw;
+    }
+    aside#long-term-weather-container div.day img {
+        height: 12vw;
+        width: 12vw;
+    }
+    section#about-weather-container .search input#search-bar {
+        height: 70px;
+    }
+    section#about-weather-container .search button#searching {
+        height: 70px;
+        width: 70px;
+        line-height: 70px;
+    }
+}

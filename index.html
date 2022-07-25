@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="scripts/scripts.js" defer></script>
+    <title>Weather API</title>
+</head>
+<body>
+    <section id="container">
+        <section id="long-term-container">
+            <h2 class="date-dayname"></h2>
+            <span class="date"></span>
+            <span class="weather-location"><i class="icon-location"></i></span>
+            <img src ="" alt="" class="icon">
+            <h1 class="weather-temperature"></h1>
+            <h3 class="weather-description"></h3>
+
+        </section>
+        <section id="about-weather-container">
+            <section class="search">
+                <input id="search-bar" type="text"></input>
+                <button id="searching"><i class="icon-search-1"></i></button>
+            </section>
+            <div id="error-container">
+                <span id="error-message">Invalid name!</span>
+            </div>
+            <aside id="long-term-weather-container">
+                <div class="day">
+                    <span class="weather-day" id="day0"></span>
+                    <img src ="" alt="" class="icon0">
+                    <h1 class="weather-temperature" id="temp0"></h1>
+                </div>
+                <div class="day">
+                    <span class="weather-day" id="day1"></span>
+                    <img src ="" alt="" class="icon1">
+                    <h1 class="weather-temperature" id="temp1"></h1>
+                </div>
+                <div class="day">
+                    <span class="weather-day" id="day2"></span>
+                    <img src ="" alt="" class="icon2">
+                    <h1 class="weather-temperature" id="temp2"></h1>
+                </div>
+                <div class="day">
+                    <span class="weather-day" id="day3"></span>
+                    <img src ="" alt="" class="icon3">
+                    <h1 class="weather-temperature" id="temp3"></h1>
+                </div>
+            </aside>
+            <div id="humidity">
+                <span id="title">Humidity</span>
+                <span id="value"></span>
+            </div>
+            <div id="wind">
+                <span id="title">Wind</span>
+                <span id="value"></span>
+            </div>
+            <div id="pressure">
+                <span id="title">Pressure</span>
+                <span id="value"></span>
+            </div>
+            <div id="visibility">
+                <span id="title">Visibility</span>
+                <span id="value"></span>
+            </div>
+        </section>
+    </section>
+</body>
+</html>

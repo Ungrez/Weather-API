@@ -1,0 +1,39 @@
+#long-term-container {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: 104%;
+    transform: translateY(-2%);
+    background: rgb(251,251,251);
+    background: linear-gradient(0deg, rgba(251,251,251,1) 0%, rgba(79,174,245,1) 100%);
+    border-radius: 1.5em;
+    z-index: 1;
+    box-shadow: 0px 0px 8px 1px black;
+    transition: .3s;
+    padding: 2em;
+}
+#long-term-container .weather-location{
+    padding: 0.4em 0;
+    flex-grow: 1;
+}
+#long-term-container .icon {
+    width: 8vw;
+    height: 8vw;
+    transform: translateX(-20%);
+    opacity: 0;
+}
+#long-term-container .weather-description {
+    text-transform: capitalize;
+}
+
+#long-term-container .weather-temperature {
+    font-size: 56px;
+    font-family: 'Segoe UI Symbol', sans-serif;
+}
+#long-term-container .weather-temperature .icon-celcius::before {
+    margin-left: 0;
+}
+
+#long-term-container:hover {
+    transform: scale(1.1) perspective(550px) rotateY(10deg);
+}
