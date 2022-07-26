@@ -48,18 +48,19 @@ let weather = {
         });
     },
     displayWeather(data) {
-        const { name, country } = data.city;
+        const { name, country, timezone } = data.city;
         const { description, icon } = data.list[0].weather[0];
         const { temp, humidity, pressure } = data.list[0].main;
         const { speed } = data.list[0].wind;
         const { visibility } = data.list[0];
+        const { pod } = data.list[0].sys;
         document.querySelector(".weather-location").innerHTML = `<i class="icon-location"></i>${name}, ${country}`;
         document.querySelector(".weather-temperature").innerHTML = `${Math.floor(temp)} ℃`;
         document.querySelector(".weather-description").innerText = `${description}`;
         document.querySelector("#humidity #value").innerText = `${humidity}%`;
         document.querySelector("#wind #value").innerText = `${Math.floor(speed)} Mph`;
         document.querySelector("#pressure #value").innerText = `${pressure} hPa`;
-        document.querySelector("#visibility #value").innerText = `${Math.round(visibility)/1000} km`;
+        document.querySelector("#visibility #value").innerText = `${Math.floor(Math.round(visibility)/1000)} km`;
         document.querySelector(".icon").src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
         for(let i = 0; i < 4; i++) {
             const { dt_txt } = data.list[`${i}`];
@@ -72,25 +73,36 @@ let weather = {
             m = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
             document.querySelector(`#day${i}`).innerText = `${h}:${m}`;
         }
-        if (description === 'clear sky' && date.getHours() > 19 || date.getHours < 5 ) {
-            document.body.style.backgroundImage = "url('imgs/night.jpg')";
-            document.querySelector('#long-term-container').style.background = "linear-gradient(0deg, rgba(45,44,44,1) 0%, rgba(0,0,0,1) 100%)";
-            document.querySelector('#long-term-container').style.color = "#fff";
-        } else if(description === 'clear sky') {
-            document.body.style.backgroundImage = "url('imgs/clear-sky.jpg')";
+        if (pod === 'd') {
             document.querySelector('#long-term-container').style.background = "linear-gradient(0deg, rgba(251,251,251,1) 0%, rgba(79,174,245,1) 100%)";
             document.querySelector('#long-term-container').style.color = "#000";
-        } else if (description === 'few clouds') {
+        }
+        if ( pod === 'n' ) {
+            document.querySelector('#long-term-container').style.background = "linear-gradient(0deg, rgba(45,44,44,1) 0%, rgba(0,0,0,1) 100%)";
+            document.querySelector('#long-term-container').style.color = "#fff";
+        }
+        if (description === 'clear sky' && pod === 'n') {
+            document.body.style.backgroundImage = "url('imgs/night.jpg')";
+        }
+        if(description === 'clear sky' && pod ==='d') {
+            document.body.style.backgroundImage = "url('imgs/clear-sky.jpg')";
+        }
+        if (description === 'few clouds') {
             document.body.style.backgroundImage = "url('imgs/few-clouds.jpg')";
-        } else if (description === 'scattered clouds' || description === 'broken clouds' || description === 'overcast clouds') {
+        }
+        if (description === 'scattered clouds' || description === 'broken clouds' || description === 'overcast clouds') {
             document.body.style.backgroundImage = "url('imgs/clouds.jpg')";
-        } else if (description === 'shower rain' || description === 'rain' || description === 'light rain' || description === 'moderate rain') {
+        }
+        if (description === 'shower rain' || description === 'rain' || description === 'light rain' || description === 'moderate rain') {
             document.body.style.backgroundImage = "url('imgs/rain.jpg')";
-        } else if (description === 'thunderstrom') {
+        }
+        if (description === 'thunderstrom') {
             document.body.style.backgroundImage = "url('imgs/thunderstorm.jpg')";
-        } else if (description === 'snow' || description === 'light snow') {
+        }
+        if (description === 'snow' || description === 'light snow') {
             document.body.style.backgroundImage = "url('imgs/snow.jpg')";
-        } else if (description === 'mist') {
+        }
+        if (description === 'mist') {
             document.body.style.backgroundImage = "url('imgs/mist.jpg')";
         }
     }

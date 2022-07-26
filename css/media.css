@@ -42,6 +42,9 @@
         font-size: 24px;
         width: 100%;
     }
+    section#long-term-container:hover {
+        transform: scale(1.05) perspective(1500px) rotateX(-5deg);
+    }
     section#about-weather-container {
         width: 100%;
         font-size: 24px;
