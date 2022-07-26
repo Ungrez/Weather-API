@@ -1,4 +1,3 @@
-let date = new Date();
 const inputValue = document.querySelector("#search-bar");
 
 const search = () => {
@@ -14,8 +13,6 @@ const searchLocation = (position) => {
 const init = () => {
     window.navigator.geolocation.getCurrentPosition(searchLocation);
     weather.weatherInfo("Warsaw");
-    document.querySelector(".date-dayname").innerText = date.toLocaleDateString('en-us', { weekday: 'long' });
-    document.querySelector(".date").innerText = date.toLocaleDateString('en-us', { day: 'numeric', month: 'short', year: 'numeric' });;
     setTimeout(() => {
         document.querySelector(".icon").style.opacity = "1";
         document.querySelectorAll("div img").forEach(e => e.style.opacity = "1");
@@ -39,7 +36,6 @@ let weather = {
             }, 2000)
         });
     },
-        
     currentLocation(latitude, longitude) {
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=4&units=metric&appid=4a0c2a9143ffc504f8e10baa4140410f`)
         .then(response => response.json())
@@ -54,6 +50,7 @@ let weather = {
         const { speed } = data.list[0].wind;
         const { visibility } = data.list[0];
         const { pod } = data.list[0].sys;
+        let count =  0;
         document.querySelector(".weather-location").innerHTML = `<i class="icon-location"></i>${name}, ${country}`;
         document.querySelector(".weather-temperature").innerHTML = `${Math.floor(temp)} ℃`;
         document.querySelector(".weather-description").innerText = `${description}`;
@@ -62,17 +59,33 @@ let weather = {
         document.querySelector("#pressure #value").innerText = `${pressure} hPa`;
         document.querySelector("#visibility #value").innerText = `${Math.floor(Math.round(visibility)/1000)} km`;
         document.querySelector(".icon").src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
         for(let i = 0; i < 4; i++) {
             const { dt_txt } = data.list[`${i}`];
             const { icon } = data.list[`${i}`].weather[0];
             const { temp } = data.list[`${i}`].main;
             document.querySelector(`.icon${i}`).src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
             document.querySelector(`#temp${i}`).innerText = `${Math.floor(temp)} ℃`;
-            const date = new Date(dt_txt);
-            h = (date.getHours() < 10 ? '0' : '') + date.getHours();
-            m = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+
+            const curLocalDate = new Date(dt_txt);
+            let curLocalMiliSec = curLocalDate.getTime();
+            let utcOffsetInMiliSec = timezone * 1000;
+            let offSetDelay = 180 * 60 * 1000;
+            let utcTime = new Date(curLocalMiliSec + utcOffsetInMiliSec - offSetDelay);
+
+            let utcHours = utcTime.getHours()
+            let utcMinutes = utcTime.getMinutes();
+
+            h = (utcHours < 10 ? '0' : '') + utcHours;
+            m = (utcMinutes < 10 ? '0' : '') + utcMinutes;
             document.querySelector(`#day${i}`).innerText = `${h}:${m}`;
+            if (count === 0) {
+                document.querySelector(".date-dayname").innerText = utcTime.toLocaleDateString('en-us', { weekday: 'long' });
+                document.querySelector(".date").innerText = utcTime.toLocaleDateString('en-us', { day: 'numeric', month: 'short', year: 'numeric' });
+            }
+            count++;
         }
+
         if (pod === 'd') {
             document.querySelector('#long-term-container').style.background = "linear-gradient(0deg, rgba(251,251,251,1) 0%, rgba(79,174,245,1) 100%)";
             document.querySelector('#long-term-container').style.color = "#000";
@@ -110,6 +123,7 @@ let weather = {
 
 window.onload = init;
 document.querySelector("#searching").addEventListener("click", search);
+
 document.addEventListener("keypress", (e) => {
     if(e.key === "Enter") return search();
 });

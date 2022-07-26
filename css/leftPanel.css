@@ -24,7 +24,6 @@
 #long-term-container .weather-description {
     text-transform: capitalize;
 }
-
 #long-term-container .weather-temperature {
     font-size: 56px;
     font-family: 'Segoe UI Symbol', sans-serif;
@@ -32,7 +31,6 @@
 #long-term-container .weather-temperature .icon-celcius::before {
     margin-left: 0;
 }
-
 #long-term-container:hover {
     transform: scale(1.1) perspective(550px) rotateY(10deg);
 }

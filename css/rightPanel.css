@@ -88,6 +88,9 @@
     align-self: center;
     width: 70%;
 }
+#about-weather-container .search input#search-bar:focus {
+    background: rgba(37, 35, 35, .3)
+}
 #about-weather-container .search button#searching {
     border-radius: 50%;
     border: none;
