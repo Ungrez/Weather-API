@@ -91,7 +91,7 @@ let weather = {
             document.querySelector('#long-term-container').style.color = "#000";
         }
         if ( pod === 'n' ) {
-            document.querySelector('#long-term-container').style.background = "linear-gradient(0deg, rgba(45,44,44,1) 0%, rgba(0,0,0,1) 100%)";
+            document.querySelector('#long-term-container').style.background = "linear-gradient(0deg, rgba(45,44,44, .9) 0%, rgba(0,0,0,1) 100%)";
             document.querySelector('#long-term-container').style.color = "#fff";
         }
         if (description === 'clear sky' && pod === 'n') {
