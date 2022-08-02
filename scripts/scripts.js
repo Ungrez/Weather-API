@@ -21,7 +21,7 @@ const init = () => {
 
 let weather = {
     weatherInfo(city) {
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=4&units=metric&appid=4a0c2a9143ffc504f8e10baa4140410f`)
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=20&units=metric&appid=4a0c2a9143ffc504f8e10baa4140410f`)
         .then((response) => { 
             if (response.ok) {
                 return response.json();
@@ -37,10 +37,11 @@ let weather = {
         });
     },
     currentLocation(latitude, longitude) {
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=4&units=metric&appid=4a0c2a9143ffc504f8e10baa4140410f`)
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=20&units=metric&appid=4a0c2a9143ffc504f8e10baa4140410f`)
         .then(response => response.json())
         .then((data) => {
             this.displayWeather(data);
+            console.log(data);
         });
     },
     displayWeather(data) {
@@ -70,8 +71,7 @@ let weather = {
             const curLocalDate = new Date(dt_txt);
             let curLocalMiliSec = curLocalDate.getTime();
             let utcOffsetInMiliSec = timezone * 1000;
-            let offSetDelay = 180 * 60 * 1000;
-            let utcTime = new Date(curLocalMiliSec + utcOffsetInMiliSec - offSetDelay);
+            let utcTime = new Date(curLocalMiliSec + utcOffsetInMiliSec);
 
             let utcHours = utcTime.getHours()
             let utcMinutes = utcTime.getMinutes();
